@@ -8,7 +8,7 @@
                  unde fugit cumque voluptatum commodi delectus excepturi!
             </p>
 
-            <router-link class="btn btn-dark" :to="{name: 'TemplateUser'}">Users</router-link>
+            <router-link class="btn btn-dark" :to="{name: 'IndexUser'}">Users</router-link>
         </div>
     </div>
   </div>

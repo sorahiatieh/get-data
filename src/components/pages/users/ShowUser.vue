@@ -4,7 +4,10 @@
     </div>
     <div v-else class="col-md-4">
         <CardView :user="user"/>
+
+        <router-link class="btn btn-dark" :to="{name: 'IndexUser'}">Users</router-link>
     </div>
+    
 </template>
   
   <script>
