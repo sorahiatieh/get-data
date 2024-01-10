@@ -1,14 +1,10 @@
 <template>
-  <div class="container mt-5">
-    <div class="row g-3">
-        <div v-if="loading" class="spinner-border" role="status">
-            <span  class="visually-hidden"></span>
-        </div>
-        <div v-else class="col-md-4" v-for="user in users" :key="user.id">
-            <CardView :user="user"/>
-        </div>
+    <div v-if="loading" class="spinner-border" role="status">
+        <span  class="visually-hidden"></span>
     </div>
-  </div>
+    <div v-else class="col-md-4" v-for="user in users" :key="user.id">
+        <CardView :user="user"/>
+    </div>
 </template>
 
 <script>

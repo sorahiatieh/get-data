@@ -7,6 +7,8 @@
                  Velit nostrum aliquid sit blanditiis consequuntur tempore doloremque placeat alias ducimus qui natus enim illum,
                  unde fugit cumque voluptatum commodi delectus excepturi!
             </p>
+
+            <router-link class="btn btn-dark" :to="{name: 'TemplateUser'}">Users</router-link>
         </div>
     </div>
   </div>
