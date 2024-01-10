@@ -6,10 +6,10 @@ import ShowUser from './components/pages/users/ShowUser.vue'
 
 
 const routes=[
-    {path: '/' , name: HomePage ,component: HomePage},
-    {path: '/Users' ,name: TemplateUser, component: TemplateUser, children: [
-        {path: '' ,name: IndexUser, component: IndexUser},
-        {path: ':id' ,name: ShowUser, component: ShowUser},
+    {path: '/' , name: 'HomePage' ,component: HomePage},
+    {path: '/Users' ,name: 'TemplateUser', component: TemplateUser, children: [
+        {path: '' ,name: 'IndexUser', component: IndexUser},
+        {path: ':id' ,name: 'userId' , component: ShowUser},
     ]},
     
 ];
