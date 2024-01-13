@@ -10,7 +10,6 @@
 <script>
 import axios from 'axios'
 import {ref} from 'vue'
-import { useRoute } from 'vue-router';
 import CardView from '@/components/users/CardView.vue'
 
 export default {
@@ -20,7 +19,7 @@ export default {
     setup(){
         const users= ref([]);
         const loading= ref(true);
-        const route= useRoute();
+        
 
         function getUsers(){
             axios
@@ -39,7 +38,7 @@ export default {
             });             
         }
         getUsers()
-        return { users , loading , route}
+        return { users , loading }
         }
 }
 </script>
