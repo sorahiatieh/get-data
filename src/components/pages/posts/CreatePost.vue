@@ -1,7 +1,7 @@
 <template>
     <div class="col-md-6">
         <h2 class="mb-5">Create Post:</h2>
-        <form>
+        <form @submit.prevent="validate">
             <div class="mb-3">
                 <label class="form-label">Title:</label>
                 <input type="text" class="form-control" v-model.lazy.trim="form.title">
@@ -21,6 +21,7 @@
         </form>
   </div>
 </template>
+
 
 <script>
 import axios from 'axios'
@@ -53,6 +54,8 @@ export default {
                 loading.value=true;
                 createPost()
             }
+
+            console.log(form.title, form.body)
         }
 
         function createPost(){
