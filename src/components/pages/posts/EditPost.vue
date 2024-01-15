@@ -79,7 +79,8 @@ export default {
 
         function updatePost(){
             axios
-              .get('https://jsonplaceholder.typicode.com/posts', {
+              .put(`https://jsonplaceholder.typicode.com/posts/${route.params.id}`, {
+                id: route.params.id,
                 title: form.title,
                 body: form.body,
                 userId: 1
@@ -87,9 +88,10 @@ export default {
               .then(function () {
                   // handle success
                  loading.value = false;
+
                  Swal.fire({
                     title: 'Tanks!',
-                    text: 'Post created successfully ',
+                    text: 'Post updated successfully ',
                     icon: 'success',
                     confirmButtonText: 'OK'
                 })
@@ -98,9 +100,6 @@ export default {
               .catch(function (error) {
                   // handle error
                   console.log(error);
-              })
-              .finally(function () {
-                  // always executed
               });      
         }
 

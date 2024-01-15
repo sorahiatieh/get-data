@@ -1,68 +1,31 @@
 <template>
     <div class="col-md-6">
         <h2 class="mb-5">Create Post:</h2>
-        <form @submit.prevent="validate">
-            <div class="mb-3">
-                <label class="form-label">Title:</label>
-                <input type="text" class="form-control" v-model.lazy.trim="form.title">
-                <div class="form-text text-danger">{{ form.titleError }}</div>
-                
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Body:</label>
-                <textarea type="textarea" class="form-control" rows="6" v-model.lazy.trim="form.body"></textarea>
-                <div class="form-text text-danger">{{ form.bodyError }}</div>
-            </div>
-            
-            <button type="submit" class="btn btn-dark" :disabled="loading">
-                <div v-if="loading" class="spinner-border spinner-border-sm" role="status"></div>
-                Create</button>
-            
-        </form>
+        <postForm @formData="createPost" :buttonLoading="loading"/>
   </div>
 </template>
 
 
 <script>
+import postForm from '@/components/posts/FormComponnent.vue'
+import { ref } from 'vue';
 import axios from 'axios'
-import { reactive, ref } from 'vue'
 import Swal from 'sweetalert2'
 
 
 export default {
+    components: {
+        postForm
+    },
     setup(){
-        const form=reactive({
-            title:"",
-            body:"",
-            titleError:"",
-            bodyError:""
-        });
         const loading=ref(false);
 
-        function validate(){
-            if(form.title === ""){
-                form.titleError= "Title is required"
-            }else{
-                form.titleError=""
-            }
-            if(form.body === ""){
-                form.bodyError = "Body is required"
-            }else{
-                form.bodyError=""
-            }
-            if(form.title !== "" && form.body !==""){
-                loading.value=true;
-                createPost()
-            }
-
-            console.log(form.title, form.body)
-        }
-
-        function createPost(){
+        function createPost(formData){
+            console.log(formData)
             axios
               .post('https://jsonplaceholder.typicode.com/posts', {
-                title: form.title,
-                body: form.body,
+                title: formData.title,
+                body: formData.body,
                 userId: 1
               })
               .then(function () {
@@ -83,7 +46,7 @@ export default {
               });      
         }
 
-        return { form, loading, validate ,createPost}
+        return { createPost ,loading}
     }
 }
 </script>
