@@ -1,6 +1,6 @@
 <template>
     <div class="col-md-6">
-        <h2 class="mb-5">Create Post:</h2>
+        <h2 class="mb-5">Edit Post:</h2>
         <form @submit.prevent="validate">
             <div class="mb-3">
                 <label class="form-label">Title:</label>
@@ -16,7 +16,7 @@
             
             <button type="submit" class="btn btn-dark" :disabled="loading">
                 <div v-if="loading" class="spinner-border spinner-border-sm" role="status"></div>
-                Create</button>
+                Edit</button>
             
         </form>
   </div>
@@ -27,17 +27,36 @@
 import axios from 'axios'
 import { reactive, ref } from 'vue'
 import Swal from 'sweetalert2'
+import { useRoute } from 'vue-router'
 
 
 export default {
     setup(){
         const form=reactive({
-            title:"",
-            body:"",
-            titleError:"",
-            bodyError:""
+            title: "",
+            body: "",
+            titleError: "",
+            bodyError: ""
         });
         const loading=ref(false);
+        const route = useRoute();
+        
+
+        function getpost(){
+            axios
+            .get(`https://jsonplaceholder.typicode.com/posts/${route.params.id}`)
+            .then(function (response) {
+                // handle success
+               form.title= response.data.title;
+               form.body= response.data.body;
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })            
+        }
+
+        getpost()
 
         function validate(){
             if(form.title === ""){

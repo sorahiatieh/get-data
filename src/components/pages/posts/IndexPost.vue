@@ -49,6 +49,9 @@ export default {
 </script>
 
 <style scoped>
+.create{
+    display: block;
+}
 .card{
     margin: 1rem;
 }

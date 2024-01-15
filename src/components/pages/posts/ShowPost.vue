@@ -12,7 +12,7 @@
             </ul>
             <div class="card-footer">
                 <button class="btn btn-sm btn-danger me-4">Delete</button>
-                <button class="btn btn-sm btn-dark ms-4">Edit</button>
+                <button class="btn btn-sm btn-dark ms-4" :to="{name: 'editPost'}">Edit</button>
             </div>
         </div>
     </div>
@@ -43,7 +43,9 @@ export default {
                 console.log(error);
             })            
         }
+
         getpost()
+        
         return { post , loading , route}
         }
 }
