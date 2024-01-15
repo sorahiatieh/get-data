@@ -60,7 +60,7 @@ export default {
 
         function createPost(){
             axios
-              .get('https://jsonplaceholder.typicode.com/posts', {
+              .post('https://jsonplaceholder.typicode.com/posts', {
                 title: form.title,
                 body: form.body,
                 userId: 1
@@ -68,6 +68,7 @@ export default {
               .then(function () {
                   // handle success
                  loading.value = false;
+
                  Swal.fire({
                     title: 'Tanks!',
                     text: 'Post created successfully ',
@@ -79,9 +80,6 @@ export default {
               .catch(function (error) {
                   // handle error
                   console.log(error);
-              })
-              .finally(function () {
-                  // always executed
               });      
         }
 

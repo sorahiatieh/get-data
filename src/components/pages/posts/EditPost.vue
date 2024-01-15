@@ -71,13 +71,13 @@ export default {
             }
             if(form.title !== "" && form.body !==""){
                 loading.value=true;
-                createPost()
+                updatePost()
             }
 
             console.log(form.title, form.body)
         }
 
-        function createPost(){
+        function updatePost(){
             axios
               .get('https://jsonplaceholder.typicode.com/posts', {
                 title: form.title,
@@ -104,7 +104,7 @@ export default {
               });      
         }
 
-        return { form, loading, validate ,createPost}
+        return { form, loading, validate }
     }
 }
 </script>
