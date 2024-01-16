@@ -1,7 +1,7 @@
 <template>
     <div class="col-md-6">
         <h2 class="mb-5">Create Post:</h2>
-        <postForm @formData="createPost" :buttonLoading="loading"/>
+        <postForm @formData="createPost" :button-loading="loading" button-text="Create Post"/>
   </div>
 </template>
 
@@ -21,7 +21,7 @@ export default {
         const loading=ref(false);
 
         function createPost(formData){
-            console.log(formData)
+            loading.value = true;
             axios
               .post('https://jsonplaceholder.typicode.com/posts', {
                 title: formData.title,
@@ -29,7 +29,6 @@ export default {
                 userId: 1
               })
               .then(function () {
-                  // handle success
                  loading.value = false;
 
                  Swal.fire({
@@ -41,7 +40,6 @@ export default {
 
               })
               .catch(function (error) {
-                  // handle error
                   console.log(error);
               });      
         }

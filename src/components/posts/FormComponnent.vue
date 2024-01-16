@@ -18,7 +18,7 @@
                 class="spinner-border spinner-border-sm" 
                 role="status"
                 ></div>
-                Create</button>
+                {{ buttonText }}</button>
             
         </form>
 </template>
@@ -29,7 +29,8 @@ import { reactive } from 'vue';
 
 export default {
   props:{
-    buttonLoading : Boolean
+    buttonLoading : Boolean,
+    buttonText: String
   },
   setup(props, {emit}){
     const form= reactive({
@@ -46,16 +47,18 @@ export default {
             }else{
                 form.titleError=""
             }
+
             if(form.body === ""){
                 form.bodyError = "Body is required"
             }else{
                 form.bodyError=""
             }
+
             if(form.title !== "" && form.body !==""){
                 emit('formData', form)
             }
 
-            console.log(form.title, form.body)
+            //console.log(form.title, form.body)
         }
 
       return {form , validate }
