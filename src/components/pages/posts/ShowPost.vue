@@ -11,7 +11,7 @@
                 <li class="list-group-item">Body: {{ post.body }}</li>
             </ul>
             <div class="card-footer">
-                <button class="btn btn-sm btn-danger me-4">Delete</button>
+                <button @click="deletePost" class="btn btn-sm btn-danger me-4">Delete</button>
                 <router-link class="btn btn-sm btn-dark ms-4" :to="{name: 'editPost' , params:{id:post.id}}">Edit</router-link>
             </div>
         </div>
@@ -22,6 +22,7 @@
 import axios from 'axios'
 import {ref} from 'vue'
 import { useRoute } from 'vue-router';
+import Swal from 'sweetalert2'
 
 export default {
     
@@ -46,7 +47,19 @@ export default {
 
         getpost()
         
-        return { post , loading , route}
+        function deletePost(){
+            axios
+            .delete(`https://jsonplaceholder.typicode.com/posts/${route.params.id}`)
+            .then(function(){
+                Swal.fire({
+                title: "Thanks!",
+                text: `Post ${route.params.id} delete successfully`,
+                icon: "warning",
+                confirmButtonText: "Ok",
+          });
+            })
+        }
+        return { post , loading , route , deletePost}
         }
 }
 </script>
