@@ -1,4 +1,4 @@
-https://img.shields.io/github/commit-activity/w/sorahiatieh/get-data
+![commit-activity](https://img.shields.io/github/commit-activity/w/sorahiatieh/get-data)
 
 
 ## Project setup
